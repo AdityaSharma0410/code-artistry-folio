@@ -56,26 +56,35 @@ const ThreeBackground = () => {
     // Create Calabi-Yau manifold approximation
     const createCalabiYau = () => {
       const geometry = new THREE.SphereGeometry(3, 32, 32);
-      const vertices = geometry.attributes.position.array;
       
-      for (let i = 0; i < vertices.length; i += 3) {
-        const x = vertices[i];
-        const y = vertices[i + 1];
-        const z = vertices[i + 2];
+      // Ensure geometry is properly initialized
+      geometry.computeBoundingBox();
+      
+      const positionAttribute = geometry.getAttribute('position');
+      if (positionAttribute) {
+        const vertices = positionAttribute.array as Float32Array;
         
-        // Complex deformation to approximate Calabi-Yau
-        const r = Math.sqrt(x*x + y*y + z*z);
-        const theta = Math.atan2(y, x);
-        const phi = Math.acos(z / r);
+        for (let i = 0; i < vertices.length; i += 3) {
+          const x = vertices[i];
+          const y = vertices[i + 1];
+          const z = vertices[i + 2];
+          
+          // Complex deformation to approximate Calabi-Yau
+          const r = Math.sqrt(x*x + y*y + z*z);
+          if (r > 0) {
+            const theta = Math.atan2(y, x);
+            const phi = Math.acos(z / r);
+            
+            const deformation = Math.sin(3 * theta) * Math.cos(2 * phi) * 0.5;
+            vertices[i] = x * (1 + deformation);
+            vertices[i + 1] = y * (1 + deformation);
+            vertices[i + 2] = z * (1 + deformation);
+          }
+        }
         
-        const deformation = Math.sin(3 * theta) * Math.cos(2 * phi) * 0.5;
-        vertices[i] = x * (1 + deformation);
-        vertices[i + 1] = y * (1 + deformation);
-        vertices[i + 2] = z * (1 + deformation);
+        positionAttribute.needsUpdate = true;
+        geometry.computeVertexNormals();
       }
-      
-      geometry.attributes.position.needsUpdate = true;
-      geometry.computeVertexNormals();
       
       const mesh = new THREE.Mesh(geometry, wireMaterial);
       mesh.position.set(-8, 5, -10);
@@ -125,23 +134,30 @@ const ThreeBackground = () => {
     // Create Möbius strip
     const createMobiusStrip = () => {
       const geometry = new THREE.TorusGeometry(2, 0.8, 8, 16);
-      const vertices = geometry.attributes.position.array;
       
-      // Deform the torus to approximate a Möbius strip
-      for (let i = 0; i < vertices.length; i += 3) {
-        const x = vertices[i];
-        const y = vertices[i + 1];
-        const z = vertices[i + 2];
+      // Ensure geometry is properly initialized
+      geometry.computeBoundingBox();
+      
+      const positionAttribute = geometry.getAttribute('position');
+      if (positionAttribute) {
+        const vertices = positionAttribute.array as Float32Array;
         
-        const angle = Math.atan2(y, x);
-        const twist = angle * 0.5;
+        // Deform the torus to approximate a Möbius strip
+        for (let i = 0; i < vertices.length; i += 3) {
+          const x = vertices[i];
+          const y = vertices[i + 1];
+          const z = vertices[i + 2];
+          
+          const angle = Math.atan2(y, x);
+          const twist = angle * 0.5;
+          
+          vertices[i + 1] = y * Math.cos(twist) - z * Math.sin(twist);
+          vertices[i + 2] = y * Math.sin(twist) + z * Math.cos(twist);
+        }
         
-        vertices[i + 1] = y * Math.cos(twist) - z * Math.sin(twist);
-        vertices[i + 2] = y * Math.sin(twist) + z * Math.cos(twist);
+        positionAttribute.needsUpdate = true;
+        geometry.computeVertexNormals();
       }
-      
-      geometry.attributes.position.needsUpdate = true;
-      geometry.computeVertexNormals();
       
       const mesh = new THREE.Mesh(geometry, wireMaterial);
       mesh.position.set(0, -8, -12);
@@ -229,21 +245,27 @@ const ThreeBackground = () => {
       mobiusStrip.rotation.z = time * 0.2;
       
       // Animate fabric grid (stretching and squeezing)
-      const fabricVertices = fabricGrid.geometry.attributes.position.array;
-      for (let i = 0; i < fabricVertices.length; i += 3) {
-        const x = fabricVertices[i];
-        const y = fabricVertices[i + 1];
-        const wave = Math.sin(time * 2 + x * 0.5) * Math.cos(time * 1.5 + y * 0.3) * 2;
-        fabricVertices[i + 2] = wave;
+      const fabricPositionAttribute = fabricGrid.geometry.getAttribute('position');
+      if (fabricPositionAttribute) {
+        const fabricVertices = fabricPositionAttribute.array as Float32Array;
+        for (let i = 0; i < fabricVertices.length; i += 3) {
+          const x = fabricVertices[i];
+          const y = fabricVertices[i + 1];
+          const wave = Math.sin(time * 2 + x * 0.5) * Math.cos(time * 1.5 + y * 0.3) * 2;
+          fabricVertices[i + 2] = wave;
+        }
+        fabricPositionAttribute.needsUpdate = true;
       }
-      fabricGrid.geometry.attributes.position.needsUpdate = true;
       
       // Animate particles
-      const particlePositions = particles.geometry.attributes.position.array;
-      for (let i = 0; i < particlePositions.length; i += 3) {
-        particlePositions[i + 1] += Math.sin(time + particlePositions[i]) * 0.01;
+      const particlePositionAttribute = particles.geometry.getAttribute('position');
+      if (particlePositionAttribute) {
+        const particlePositions = particlePositionAttribute.array as Float32Array;
+        for (let i = 0; i < particlePositions.length; i += 3) {
+          particlePositions[i + 1] += Math.sin(time + particlePositions[i]) * 0.01;
+        }
+        particlePositionAttribute.needsUpdate = true;
       }
-      particles.geometry.attributes.position.needsUpdate = true;
       
       // Cursor magnetic attraction
       const mouseInfluence = 0.02;
