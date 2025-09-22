@@ -5,10 +5,12 @@ import PortfolioSection from '@/components/PortfolioSection';
 import ServicesSection from '@/components/ServicesSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import ThreeBackground from '@/components/ThreeBackground';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <ThreeBackground />
       <Navigation />
       <main>
         <HeroSection />
