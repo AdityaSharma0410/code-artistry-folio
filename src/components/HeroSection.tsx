@@ -4,10 +4,17 @@ import { ChevronDown } from 'lucide-react';
 import heroImage from '../assets/hero-programmer.jpg';
 
 const HeroSection = () => {
+  const [showIntro, setShowIntro] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    // Show starry background for 3 seconds, then fade in hero content
+    const introTimer = setTimeout(() => {
+      setShowIntro(false);
+      setTimeout(() => setIsVisible(true), 500);
+    }, 3000);
+
+    return () => clearTimeout(introTimer);
   }, []);
 
   const scrollToAbout = () => {
@@ -19,8 +26,18 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden">
+      {/* Intro Overlay */}
+      {showIntro && (
+        <div className="absolute inset-0 z-20 bg-background/95 backdrop-blur-sm flex items-center justify-center transition-opacity duration-1000">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-xl text-muted-foreground">Initializing Experience...</p>
+          </div>
+        </div>
+      )}
+
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className={`absolute inset-0 z-0 transition-opacity duration-1000 ${showIntro ? 'opacity-30' : 'opacity-100'}`}>
         <img 
           src={heroImage}
           alt="Developer programming in dark environment"
@@ -33,7 +50,9 @@ const HeroSection = () => {
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-1/2 hero-glow opacity-40"></div>
 
       {/* Content */}
-      <div className="relative z-10 text-center section-padding container-width">
+      <div className={`relative z-10 text-center section-padding container-width transition-all duration-1000 transform ${
+        showIntro ? 'translate-y-10 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+      }`}>
         <div className={`transition-all duration-1000 transform ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
@@ -71,7 +90,7 @@ const HeroSection = () => {
 
         {/* Scroll Indicator */}
         <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1000 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          isVisible && !showIntro ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
           <button 
             onClick={scrollToAbout}
