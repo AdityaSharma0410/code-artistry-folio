@@ -28,12 +28,7 @@ const HeroSection = () => {
     <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden">
       {/* Intro Overlay */}
       {showIntro && (
-        <div className="absolute inset-0 z-20 bg-background/95 backdrop-blur-sm flex items-center justify-center transition-opacity duration-1000">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-xl text-muted-foreground">Initializing Experience...</p>
-          </div>
-        </div>
+        <div className="absolute inset-0 z-20 bg-background/30 backdrop-blur-sm transition-opacity duration-1000"></div>
       )}
 
       {/* Background Image */}
