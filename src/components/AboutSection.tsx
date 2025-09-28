@@ -71,7 +71,7 @@ const AboutSection = () => {
       
       <div className="relative z-10 section-padding container-width">
         <div className={`text-center mb-16 transition-all duration-1000 transform ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+          isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
         }`}>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 glow-text">
             I offer the mind of a{' '}
@@ -94,7 +94,7 @@ const AboutSection = () => {
               <Card 
                 key={index}
                 className={`p-6 bg-white/15 backdrop-blur-md border-white/20 hover:border-white/30 shadow-xl hover:shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all duration-500 transform hover:scale-105 ${
-                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+                  isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
                 }`}
                 style={{ 
                   transitionDelay: isVisible ? capability.delay : '0s',
@@ -117,7 +117,7 @@ const AboutSection = () => {
 
         {/* CTA Section */}
         <div className={`text-center transition-all duration-1000 delay-1000 transform ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+          isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
         }`}>
           <p className="text-xl text-muted-foreground mb-8">
             Ready to see these capabilities in action?
