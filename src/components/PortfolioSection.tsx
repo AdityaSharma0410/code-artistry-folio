@@ -104,7 +104,7 @@ const PortfolioSection = () => {
     : projects.filter(project => project.category === filter);
 
   return (
-    <section ref={sectionRef} id="portfolio" className="py-24 bg-card/20">
+    <section ref={sectionRef} id="portfolio" className="py-24">
       <div className="section-padding container-width">
         <div className={`text-center mb-16 transition-all duration-1000 transform ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
@@ -142,7 +142,7 @@ const PortfolioSection = () => {
           {filteredProjects.map((project, index) => (
             <Card 
               key={project.id}
-              className={`overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 transform hover:scale-105 group ${
+              className={`overflow-hidden bg-white/10 backdrop-blur-md border-white/15 hover:border-white/25 shadow-lg transition-all duration-500 transform hover:scale-105 group ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
               }`}
               style={{ transitionDelay: isVisible ? `${index * 0.1}s` : '0s' }}
@@ -153,7 +153,7 @@ const PortfolioSection = () => {
                   alt={project.title}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
                   <div className="flex gap-2">
                     <Button size="sm" variant="secondary" asChild>
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">

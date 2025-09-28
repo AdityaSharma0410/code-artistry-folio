@@ -67,7 +67,7 @@ const AboutSection = () => {
 
   return (
     <section ref={sectionRef} id="about" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-background/60 backdrop-blur-[2px]"></div>
       
       <div className="relative z-10 section-padding container-width">
         <div className={`text-center mb-16 transition-all duration-1000 transform ${
@@ -93,7 +93,7 @@ const AboutSection = () => {
             return (
               <Card 
                 key={index}
-                className={`p-6 bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 transform hover:scale-105 ${
+                className={`p-6 bg-white/10 backdrop-blur-md border-white/15 hover:border-white/25 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 ${
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
                 }`}
                 style={{ 

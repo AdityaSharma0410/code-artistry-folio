@@ -52,7 +52,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               size="lg" 
-              className="bg-primary hover:bg-primary/90 glow-effect px-8 py-4 text-lg"
+              className="bg-primary/80 hover:bg-primary/90 backdrop-blur-md border border-white/10 shadow-lg px-8 py-4 text-lg"
               onClick={scrollToAbout}
             >
               Discover My Work
@@ -61,7 +61,7 @@ const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground px-8 py-4 text-lg"
+              className="border-white/20 bg-white/10 text-accent hover:bg-white/20 hover:text-accent-foreground backdrop-blur-md px-8 py-4 text-lg"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get In Touch

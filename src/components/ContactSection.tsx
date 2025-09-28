@@ -103,7 +103,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="contact" className="py-24 bg-card/20">
+    <section ref={sectionRef} id="contact" className="py-24">
       <div className="section-padding container-width">
         <div className={`text-center mb-16 transition-all duration-1000 transform ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
@@ -118,7 +118,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <Card className={`p-8 bg-card/50 backdrop-blur-sm border-border/50 transition-all duration-1000 delay-300 transform ${
+          <Card className={`p-8 bg-white/10 backdrop-blur-md border-white/15 shadow-lg transition-all duration-1000 delay-300 transform ${
             isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
           }`}>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -131,7 +131,7 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="bg-background/50 border-border/50 focus:border-primary"
+                    className="bg-white/5 border-white/20 focus:border-primary backdrop-blur-sm"
                   />
                 </div>
                 <div className="space-y-2">
@@ -143,7 +143,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="bg-background/50 border-border/50 focus:border-primary"
+                    className="bg-white/5 border-white/20 focus:border-primary backdrop-blur-sm"
                   />
                 </div>
               </div>
@@ -156,7 +156,7 @@ const ContactSection = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="bg-background/50 border-border/50 focus:border-primary"
+                  className="bg-white/5 border-white/20 focus:border-primary backdrop-blur-sm"
                 />
               </div>
               
@@ -169,7 +169,7 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="bg-background/50 border-border/50 focus:border-primary resize-none"
+                  className="bg-white/5 border-white/20 focus:border-primary resize-none backdrop-blur-sm"
                 />
               </div>
               
@@ -206,7 +206,7 @@ const ContactSection = () => {
                     <a
                       key={index}
                       href={info.href}
-                      className="flex items-center p-4 rounded-lg bg-card/30 hover:bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 group"
+                      className="flex items-center p-4 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/25 backdrop-blur-md transition-all duration-300 group shadow"
                     >
                       <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent mr-4 group-hover:scale-110 transition-transform duration-300">
                         <Icon className="w-6 h-6 text-primary-foreground" />
@@ -235,7 +235,7 @@ const ContactSection = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center justify-center w-12 h-12 rounded-full bg-card/30 hover:bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-110 ${social.color}`}
+                      className={`flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/25 backdrop-blur-md transition-all duration-300 hover:scale-110 ${social.color}`}
                       aria-label={social.label}
                     >
                       <Icon className="w-6 h-6" />
