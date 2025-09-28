@@ -122,7 +122,7 @@ const ServicesSection = () => {
             return (
               <Card 
                 key={index}
-                className={`relative p-6 bg-white/10 backdrop-blur-md border-white/15 hover:border-white/25 shadow-lg transition-all duration-500 transform hover:scale-105 group ${
+                className={`relative p-6 bg-white/15 backdrop-blur-md border-white/20 hover:border-white/30 shadow-xl hover:shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all duration-500 transform hover:scale-105 group ${
                   service.popular ? 'border-accent ring-2 ring-accent/20' : ''
                 } ${
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
@@ -183,7 +183,7 @@ const ServicesSection = () => {
             {testimonials.map((testimonial, index) => (
               <Card 
                 key={index}
-                className="p-6 bg-card/30 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300"
+                className="p-6 bg-white/15 backdrop-blur-md border-white/20 hover:border-white/30 shadow-lg hover:shadow-xl shadow-black/10 hover:shadow-black/20 transition-all duration-300"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (

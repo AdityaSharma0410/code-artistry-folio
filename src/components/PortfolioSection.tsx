@@ -142,7 +142,7 @@ const PortfolioSection = () => {
           {filteredProjects.map((project, index) => (
             <Card 
               key={project.id}
-              className={`overflow-hidden bg-white/10 backdrop-blur-md border-white/15 hover:border-white/25 shadow-lg transition-all duration-500 transform hover:scale-105 group ${
+              className={`overflow-hidden bg-white/15 backdrop-blur-md border-white/20 hover:border-white/30 shadow-xl hover:shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all duration-500 transform hover:scale-105 group ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
               }`}
               style={{ transitionDelay: isVisible ? `${index * 0.1}s` : '0s' }}

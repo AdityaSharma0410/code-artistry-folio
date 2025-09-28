@@ -118,7 +118,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <Card className={`p-8 bg-white/10 backdrop-blur-md border-white/15 shadow-lg transition-all duration-1000 delay-300 transform ${
+          <Card className={`p-8 bg-white/15 backdrop-blur-md border-white/20 shadow-xl shadow-black/20 transition-all duration-1000 delay-300 transform ${
             isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'
           }`}>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -206,7 +206,7 @@ const ContactSection = () => {
                     <a
                       key={index}
                       href={info.href}
-                      className="flex items-center p-4 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/25 backdrop-blur-md transition-all duration-300 group shadow"
+                      className="flex items-center p-4 rounded-lg bg-white/15 hover:bg-white/25 border border-white/20 hover:border-white/30 backdrop-blur-md shadow-lg hover:shadow-xl shadow-black/10 hover:shadow-black/20 transition-all duration-300 group"
                     >
                       <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent mr-4 group-hover:scale-110 transition-transform duration-300">
                         <Icon className="w-6 h-6 text-primary-foreground" />
@@ -235,7 +235,7 @@ const ContactSection = () => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/25 backdrop-blur-md transition-all duration-300 hover:scale-110 ${social.color}`}
+                      className={`flex items-center justify-center w-12 h-12 rounded-full bg-white/15 hover:bg-white/25 border border-white/20 hover:border-white/30 backdrop-blur-md shadow-lg hover:shadow-xl shadow-black/10 hover:shadow-black/20 transition-all duration-300 hover:scale-110 ${social.color}`}
                       aria-label={social.label}
                     >
                       <Icon className="w-6 h-6" />
